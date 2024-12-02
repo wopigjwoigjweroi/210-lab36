@@ -18,6 +18,28 @@ void IntBinaryTree::insertNode(const string& str) {
     insert(root, newNode);
 }
 
+void IntBinaryTree::destroySubTree(TreeNode* nodePtr) {
+    if (nodePtr) {
+        destroySubTree(nodePtr->left);
+        destroySubTree(nodePtr->right);
+        delete nodePtr;
+    }
+}
+
+bool IntBinaryTree::searchNode(int num) {
+   TreeNode *nodePtr = root;
+
+   while (nodePtr)    {
+      if (nodePtr->value == num)
+         return true;
+      else if (num < nodePtr->value)
+         nodePtr = nodePtr->left;
+      else
+         nodePtr = nodePtr->right;
+   }
+   return false;
+}
+
 int main() {
     
 
