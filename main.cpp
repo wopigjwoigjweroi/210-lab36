@@ -84,7 +84,6 @@ void IntBinaryTree::makeDeletion(TreeNode *&nodePtr) {
    }
    
    else {
-
       tempNodePtr = nodePtr->right;
      
       while (tempNodePtr->left)
@@ -98,6 +97,22 @@ void IntBinaryTree::makeDeletion(TreeNode *&nodePtr) {
        
       delete tempNodePtr;
    }
+}
+
+void IntBinaryTree::displayInOrder(TreeNode *nodePtr) const {
+   if (nodePtr) {
+      displayInOrder(nodePtr->left);
+      cout << nodePtr->value << endl;
+      displayInOrder(nodePtr->right);
+   }
+}
+
+void IntBinaryTree::displayPreOrder(TreeNode* nodePtr) const {
+    if (nodePtr) {
+        cout << nodePtr->value << endl;
+        displayPreOrder(nodePtr->left);
+        displayPreOrder(nodePtr->right);
+    }
 }
 
 int main() {
