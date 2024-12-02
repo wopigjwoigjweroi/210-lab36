@@ -115,8 +115,21 @@ void IntBinaryTree::displayPreOrder(TreeNode* nodePtr) const {
     }
 }
 
+void IntBinaryTree::displayPostOrder(TreeNode *nodePtr) const {
+   if (nodePtr) {
+      displayPostOrder(nodePtr->left);    
+      displayPostOrder(nodePtr->right);
+      cout << nodePtr->value << endl;
+   }
+}
+
 int main() {
-    
+
+    IntBinaryTree tree;
+
+    int select;
+
+    string str; 
 
     return 0;
 }
