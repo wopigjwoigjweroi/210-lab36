@@ -44,22 +44,60 @@ bool IntBinaryTree::searchNode(const string &str) {
    return false;
 }
 
-void IntBinaryTree::remove(int num) {
+void IntBinaryTree::remove(const string &str) {
     
-   deleteNode(num, root);
+   deleteNode(str, root);
     
 }
 
-void IntBinaryTree::deleteNode(int num, TreeNode *&nodePtr) {
+void IntBinaryTree::deleteNode(const string &str, TreeNode *&nodePtr) {
     
-   if (num < nodePtr->value)
-      deleteNode(num, nodePtr->left);
+   if (str < nodePtr->value)
+      deleteNode(str, nodePtr->left);
        
-   else if (num > nodePtr->value)
-      deleteNode(num, nodePtr->right);
+   else if (str > nodePtr->value)
+      deleteNode(str, nodePtr->right);
        
    else
       makeDeletion(nodePtr);
+}
+
+void IntBinaryTree::makeDeletion(TreeNode *&nodePtr) {
+ 
+   TreeNode *tempNodePtr;
+
+   if (!nodePtr)
+      cout << "Cannot delete empty node.\n";
+       
+   else if (!nodePtr->right) {
+      tempNodePtr = nodePtr;
+       
+      nodePtr = nodePtr->left;  
+       
+      delete tempNodePtr;
+   } else if (!nodePtr->left) {
+       
+      tempNodePtr = nodePtr;
+       
+      nodePtr = nodePtr->right;  
+      delete tempNodePtr;
+   }
+   
+   else {
+
+      tempNodePtr = nodePtr->right;
+     
+      while (tempNodePtr->left)
+         tempNodePtr = tempNodePtr->left;
+    
+      tempNodePtr->left = nodePtr->left;
+       
+      tempNodePtr = nodePtr;
+     
+      nodePtr = nodePtr->right;
+       
+      delete tempNodePtr;
+   }
 }
 
 int main() {
