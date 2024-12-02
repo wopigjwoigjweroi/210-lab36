@@ -26,18 +26,40 @@ void IntBinaryTree::destroySubTree(TreeNode* nodePtr) {
     }
 }
 
-bool IntBinaryTree::searchNode(int num) {
+bool IntBinaryTree::searchNode(const string &str) {
    TreeNode *nodePtr = root;
 
-   while (nodePtr)    {
-      if (nodePtr->value == num)
+   while (nodePtr) {
+       
+      if (nodePtr->value == str)
          return true;
-      else if (num < nodePtr->value)
+          
+      else if (str < nodePtr->value)
          nodePtr = nodePtr->left;
+          
       else
          nodePtr = nodePtr->right;
    }
+    
    return false;
+}
+
+void IntBinaryTree::remove(int num) {
+    
+   deleteNode(num, root);
+    
+}
+
+void IntBinaryTree::deleteNode(int num, TreeNode *&nodePtr) {
+    
+   if (num < nodePtr->value)
+      deleteNode(num, nodePtr->left);
+       
+   else if (num > nodePtr->value)
+      deleteNode(num, nodePtr->right);
+       
+   else
+      makeDeletion(nodePtr);
 }
 
 int main() {
